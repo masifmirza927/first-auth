@@ -5,9 +5,11 @@ const UserModel = require('./models/UserModel');
 const bcrypt = require("bcrypt");
 const jwt   = require("jsonwebtoken");
 const secretKey = "23sf&%T23423sdfasfdaxcvaxfgsadfsdf#O#d;((23234))";
+const cors = require("cors");
 
 // middlewares
 app.use(express.json());
+app.use(cors());
 
 
 app.get("/", async( req, res) => {
@@ -52,7 +54,6 @@ app.post("/signup", async (req, res) => {
     }
 })
 
-
 // user registration
 app.post("/login", async (req, res) => {
     const {email, password } = req.body;
@@ -91,8 +92,6 @@ app.post("/login", async (req, res) => {
         
     }
 })
-
-
 
 // server & DB connection
 mongoose.connect("mongodb://127.0.0.1:27017/firstAuth").then(() => {
