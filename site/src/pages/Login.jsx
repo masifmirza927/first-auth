@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const Login = () => {
+const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigator = useNavigate();
@@ -14,6 +14,7 @@ const Login = () => {
             console.log(res.data);
             if(res.data.status == "success") {
                 localStorage.setItem("token", res.data.token);
+                props.setIsLogin(true);
                 navigator("/dashboard")
             } else {
                 alert("not logged in")
