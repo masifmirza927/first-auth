@@ -1,12 +1,14 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { MyContext } from '../MyContext';
 
-const Logout = (props) => {
+const Logout = () => {
     const navigator = useNavigate();
+    const {isLogin, setIsLogin} = useContext(MyContext);
    
     useEffect(() => {
         localStorage.removeItem("token");
-        props.setIsLogin(false)
+        setIsLogin(false)
        navigator("/login")
       }, [])
 

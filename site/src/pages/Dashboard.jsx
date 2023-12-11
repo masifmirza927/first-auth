@@ -4,8 +4,9 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import MyModal from '../components/MyModal';
 import Login from './Login';
 import Signup from './Signup';
+import Box from '../components/Box';
 
-const Dashboard = () => {
+const Dashboard = (props) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenForm, setIsOpenForm] = useState(null);
@@ -22,7 +23,7 @@ const Dashboard = () => {
   // if (checkLogin() === true) {
     return (
       <div>
-        Dashboard
+        <Box />
         <Outlet />
         <button onClick={ () => {
             setIsOpen(true);

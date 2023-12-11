@@ -1,20 +1,22 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
+import { MyContext } from '../MyContext';
 
 
 
-const Login = (props) => {
+const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigator = useNavigate();
+    const {isLogin, setIsLogin} = useContext(MyContext);
 
     const onSubmit = () => {
         axios.post("http://localhost:4000/login", { email: email, password: password}).then( (res) => {
             console.log(res.data);
             if(res.data.status == "success") {
                 localStorage.setItem("token", res.data.token);
-                props.setIsLogin(true);
+                setIsLogin(true);
                 navigator("/dashboard")
             } else {
                 alert("not logged in")
